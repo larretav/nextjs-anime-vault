@@ -60,22 +60,26 @@ export const Navbar = () => {
 						<p className="font-bold text-inherit">ACME</p>
 					</NextLink>
 				</NavbarBrand>
-				<ul className="hidden lg:flex gap-4 justify-start ml-2">
-					{siteConfig.navItems.map((item) => (
-						<NavbarItem key={item.href}>
-							<NextLink
-								className={clsx(
-									linkStyles({ color: "foreground" }),
-									"data-[active=true]:text-primary data-[active=true]:font-medium"
-								)}
-								color="foreground"
-								href={item.href}
-							>
-								{item.label}
-							</NextLink>
-						</NavbarItem>
-					))}
+
+				<ul className="hidden sm:flex gap-4 justify-start ml-2">
+					{
+						siteConfig.navItems.map((item) => (
+							<NavbarItem key={item.href}>
+								<NextLink
+									className={clsx(
+										linkStyles({ color: "foreground" }),
+										"data-[active=true]:text-primary data-[active=true]:font-medium"
+									)}
+									color="foreground"
+									href={item.href}
+								>
+									{item.label}
+								</NextLink>
+							</NavbarItem>
+						))
+					}
 				</ul>
+
 			</NavbarContent>
 
 			<NavbarContent
@@ -97,7 +101,7 @@ export const Navbar = () => {
 				<NavbarItem className="hidden lg:flex">{searchInput}</NavbarItem>
 				<NavbarItem className="hidden md:flex">
 					<Button
-            isExternal
+						isExternal
 						as={Link}
 						className="text-sm font-normal text-default-600 bg-default-100"
 						href={siteConfig.links.sponsor}
@@ -119,6 +123,7 @@ export const Navbar = () => {
 
 			<NavbarMenu>
 				{searchInput}
+				<input type="text" />
 				<div className="mx-4 mt-2 flex flex-col gap-2">
 					{siteConfig.navMenuItems.map((item, index) => (
 						<NavbarMenuItem key={`${item}-${index}`}>
@@ -127,8 +132,8 @@ export const Navbar = () => {
 									index === 2
 										? "primary"
 										: index === siteConfig.navMenuItems.length - 1
-										? "danger"
-										: "foreground"
+											? "danger"
+											: "foreground"
 								}
 								href="#"
 								size="lg"

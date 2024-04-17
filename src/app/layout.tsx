@@ -4,6 +4,7 @@ import { Providers } from "./providers";
 import clsx from "clsx";
 import { siteConfig } from "@/config/site";
 import { Metadata, Viewport } from "next";
+import { Footer, Navbar } from "@/components";
 
 export const metadata: Metadata = {
 	title: {
@@ -41,7 +42,11 @@ export default function RootLayout({
 				)}
 			>
 				<Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
+					<Navbar />
+
 					{children}
+
+					{/* <Footer /> */}
 				</Providers>
 			</body>
 		</html >
