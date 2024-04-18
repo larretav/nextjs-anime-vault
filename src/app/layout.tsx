@@ -4,7 +4,10 @@ import { Providers } from "./providers";
 import clsx from "clsx";
 import { siteConfig } from "@/config/site";
 import { Metadata, Viewport } from "next";
-import { Footer, Navbar } from "@/components";
+import { Footer, Hero, Navbar } from "@/components";
+import { DM_Sans } from "next/font/google";
+
+const dmSans = DM_Sans({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
 	title: {
@@ -27,6 +30,8 @@ export const viewport: Viewport = {
 }
 
 
+
+
 export default function RootLayout({
 	children,
 }: {
@@ -38,15 +43,15 @@ export default function RootLayout({
 			<body
 				className={clsx(
 					"min-h-screen bg-background font-sans antialiased",
-					fontSans.variable
+					fontSans.variable,
+					dmSans.className
 				)}
 			>
 				<Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
-					<Navbar />
-
-					{children}
-
-					{/* <Footer /> */}
+					<main className="max-w-7xl mx-auto bg-[#0F1117]">
+						<Hero />
+						{children}
+					</main>
 				</Providers>
 			</body>
 		</html >

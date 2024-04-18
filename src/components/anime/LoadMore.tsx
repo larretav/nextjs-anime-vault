@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-function LoadMore() {
+export const LoadMore = () => {
   return (
     <>
       <section className="flex justify-center items-center w-full">
@@ -18,4 +18,3 @@ function LoadMore() {
   );
 }
 
-export default LoadMore;
