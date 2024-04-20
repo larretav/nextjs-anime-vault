@@ -1,20 +1,54 @@
-import Image from "next/image";
+'use client';
+
+import { getPaginatedAnimes } from "@/actions";
+import { useAnimeStore } from "@/store";
+import { Spinner } from "@nextui-org/react";
+import { useInView } from "framer-motion";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 export const LoadMore = () => {
-  return (
-    <>
-      <section className="flex justify-center items-center w-full">
-        <div>
-          <Image
-            src="./spinner.svg"
-            alt="spinner"
-            width={56}
-            height={56}
-            className="object-contain"
-          />
-        </div>
-      </section>
-    </>
-  );
+
+  const ref = useRef(null)
+  const isInView = useInView(ref);
+
+  // States
+  const page = useAnimeStore((state) => state.page)
+
+  // Dispatchers
+  const setAnimes = useAnimeStore((state) => state.setAnimeList)
+  const setPage = useAnimeStore((state) => state.setAnimeListPage)
+
+  const [isLoading, setIsLoading] = useState(false);
+
+  console.log({ loadMore: page });
+
+  const getAnimeList = useCallback(async () => {
+    setIsLoading(true)
+    console.log('getAnimeList page: ', page)
+
+    try {
+      const resp = await getPaginatedAnimes(page);
+
+      if (!resp.ok) throw new Error(resp.message);
+
+      setAnimes(resp.data ?? []);
+      setPage(page + 1);
+
+    } catch (error) {
+      console.log(error)
+    }
+
+    setIsLoading(false)
+  }, [page])
+
+  useEffect(() => {
+    if (isInView)
+      getAnimeList()
+
+  }, [isInView])
+
+  return <section ref={ref} className="w-full flex justify-center items-center">
+    {isLoading && <Spinner size="lg" />}
+  </section>
 }
 
