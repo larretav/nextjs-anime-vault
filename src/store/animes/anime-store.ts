@@ -3,7 +3,8 @@ import { create } from 'zustand'
 
 interface State {
   animes: AnimeResponse[],
-  page: number
+  page: number,
+  limit: number
 }
 
 type Action = {
@@ -14,11 +15,10 @@ type Action = {
 export const useAnimeStore = create<State & Action>()((set, get) => ({
   animes: [],
   page: 1,
+  limit: 10,
 
   setAnimeList: (newAnimeList) => {
     set((state) => {
-      console.log({state: state.animes})
-      console.log({newAnimeList})
       return { animes: [...state.animes, ...newAnimeList] }
     })
   },

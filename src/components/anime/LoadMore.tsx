@@ -20,14 +20,10 @@ export const LoadMore = () => {
 
   const [isLoading, setIsLoading] = useState(false);
 
-  console.log({ loadMore: page });
-
   const getAnimeList = useCallback(async () => {
     setIsLoading(true)
-    console.log('getAnimeList page: ', page)
-
     try {
-      const resp = await getPaginatedAnimes(page);
+      const resp = await getPaginatedAnimes(page + 1);
 
       if (!resp.ok) throw new Error(resp.message);
 

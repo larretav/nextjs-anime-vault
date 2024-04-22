@@ -3,10 +3,10 @@
 import { AnimeResponse } from "@/interfaces";
 
 
-export const getPaginatedAnimes = async (page: number = 1) => {
-  console.log({fromService: page})
+export const getPaginatedAnimes = async (page: number = 1, limit: number = 10) => {
+  console.log({ fromService: page })
   try {
-    const animeResp = await fetch(`https://shikimori.one/api/animes?page=${page}&limit=10&order=popularity`, { cache: "no-store" })
+    const animeResp = await fetch(`https://shikimori.one/api/animes?page=${page}&limit=${limit}&order=popularity`, { cache: "no-store" })
     const data = await animeResp.json();
 
     return {

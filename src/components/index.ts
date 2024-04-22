@@ -1,6 +1,6 @@
 export { AnimeCard } from "./anime/AnimeCard";
 export { AnimeList } from "./anime/AnimeList";
-export { EpisodesFiledIcon } from "./icons/EpisodesFiledIcon";
+export { EpisodesFilledIcon as EpisodesFiledIcon } from "./icons/EpisodesFilledIcon";
 export { FadeIn } from "./animations/FadeIn";
 export { Footer } from "./ui/Footer";
 export { Hero } from "./anime/Hero";

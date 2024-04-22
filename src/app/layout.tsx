@@ -48,10 +48,12 @@ export default function RootLayout({
 				)}
 			>
 				<Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
-					<main className="max-w-7xl mx-auto bg-[#0F1117]">
+					<Navbar />
+					<main className="max-w-7xl mx-auto bg-default-100">
 						<Hero />
 						{children}
 					</main>
+					<Footer />
 				</Providers>
 			</body>
 		</html >
